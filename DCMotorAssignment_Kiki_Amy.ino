@@ -1,7 +1,8 @@
 const int trigPin = 2;
 const int echoPin = 3;
-const int enblePin = 4;
+const int enablePin = 4;
 const int motorPin = 5;
+const int motor2Pin = 6;
 int minDis = 20; //min distance to stop the spinning
 int amp = 1; //amplifier for the general speed change
 
@@ -25,15 +26,21 @@ void loop() {
   distance = msTocm(duration);
   
   // threshold
-  if (distance < 50) {
+  /*if (distance < 50) {
     int speed = (distance - minDis) * amp;
     //spin!
     digitalWrite(enablePin, HIGH);
     analogWrite(motorPin, speed);
-    }
+    analogWrite(motor2Pin, LOW);
+    }*/
+
+   //testing DC Motor
+   digitalWrite(enablePin, HIGH);
+   analogWrite(motorPin, 60);
+   analogWrite(motor2Pin, 0);
   
 }
 
-void msTocm (long ms_) {
+long msTocm (long ms_) {
   return ms_ / 29 / 2;  
 }
